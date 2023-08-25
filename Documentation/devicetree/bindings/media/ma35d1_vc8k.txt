@@ -1,0 +1,47 @@
+* Nuvoton MA35D1 VC8K H264/JPEG decoder
+
+The VC8K H264/JPEG decoder presented on Nuvoton MA35D1 SOC supports H264 baseline, main prfile,
+and high profile bit stream decode. MA35D1 VC8K supports H264 decode up to 1920x1080 resolution,
+and JPEG decode support up to 16000 x 16000.
+
+Required properties:
+
+- compatible : Should be "nuvoton,ma35d1-vc8k"
+- reg : address and length of the register for the device.
+- clocks: VC8K clock source
+- interrupts: should contain VC8K interrupt number
+- nuvoton,sys: phandle referencing a syscon
+- memory-region: reserved memory for VC8K H264 reference buffers
+- pp_out_enable: Global VC8K PP setting. 1: enable PP; 0: disable PP
+- fb_width: the width of frame buffer
+- fb_height: the height of frame buffer
+- fb_fmt: the color format of frame buffer. It should be RGB888, RGB565, or YUV420.
+- vid_max_width: Expect maximum width of PP output images.
+- vid_max_height: Expect maximum width of PP output images.
+- vid_max_instance: Expect maximum number of H264 decode instances presented at the same time
+- vid_refbuf_cnt: Pre-allocate number of reference buffers for each H264 decode instance
+
+Note 1:  VC8K kernel module tries to allocate enough reference buffers on module inserted.  
+             vid_max_width and vid_max_height determines the size of each reference buffer.
+             vid_max_instance and vid_refbuf_cnt determines the number of reference buffers to allocate.
+
+Example:
+
+	vc8k:vc8k@40290000 {
+		compatible = "nuvoton,ma35d1-vc8k";
+		reg = <0x0 0x40290000 0x0 0x1000>;
+		clocks = <&clk vc8k_gate>;
+		nuvoton,sys = <&sys>;
+		interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
+		memory-region = <&vc8k_buf>;
+		pp_out_enable = "yes";
+		fb_width = <1024>;
+		fb_height = <600>;
+		fb_fmt = "RGB888";   /* RGB888, RGB565, or YUV420P */
+		vid_max_width = <1280>;
+		vid_max_height = <720>;
+		vid_max_instance = <3>;
+		vid_refbuf_cnt = <6>;
+		status = "okay";
+	};
+

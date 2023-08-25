@@ -1,0 +1,7 @@
+--- drivers/net/ethernet/stmicro/stmmac/stmmac_ethtool.c
++++ drivers/net/ethernet/stmicro/stmmac/stmmac_ethtool.c
+@@ -1024,3 +1024,4 @@ void stmmac_set_ethtool_ops(struct net_device *netdev)
+ {
+ 	netdev->ethtool_ops = &stmmac_ethtool_ops;
+ }
++EXPORT_SYMBOL_GPL(stmmac_set_ethtool_ops);

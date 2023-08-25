@@ -1,0 +1,16 @@
+--- drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
++++ drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
+@@ -214,7 +214,7 @@ void stmmac_ptp_register(struct stmmac_priv *priv)
+ 	} else if (priv->ptp_clock)
+ 		netdev_info(priv->dev, "registered PTP clock\n");
+ }
+-
++EXPORT_SYMBOL_GPL(stmmac_ptp_register);
+ /**
+  * stmmac_ptp_unregister
+  * @priv: driver private structure
+@@ -230,3 +230,4 @@ void stmmac_ptp_unregister(struct stmmac_priv *priv)
+ 			 priv->dev->name);
+ 	}
+ }
++EXPORT_SYMBOL_GPL(stmmac_ptp_unregister);

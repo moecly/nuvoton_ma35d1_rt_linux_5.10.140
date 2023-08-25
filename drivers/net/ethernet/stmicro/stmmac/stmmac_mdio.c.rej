@@ -1,0 +1,24 @@
+--- drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
++++ drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
+@@ -397,6 +397,7 @@ int stmmac_mdio_reset(struct mii_bus *bus)
+ 	return 0;
+ }
+ 
++EXPORT_SYMBOL_GPL(stmmac_mdio_reset);
+ /**
+  * stmmac_mdio_register
+  * @ndev: net device structure
+@@ -545,6 +546,8 @@ int stmmac_mdio_register(struct net_device *ndev)
+ 	return err;
+ }
+ 
++EXPORT_SYMBOL_GPL(stmmac_mdio_register);
++
+ /**
+  * stmmac_mdio_unregister
+  * @ndev: net device structure
+@@ -564,3 +567,4 @@ int stmmac_mdio_unregister(struct net_device *ndev)
+ 
+ 	return 0;
+ }
++EXPORT_SYMBOL_GPL(stmmac_mdio_unregister);

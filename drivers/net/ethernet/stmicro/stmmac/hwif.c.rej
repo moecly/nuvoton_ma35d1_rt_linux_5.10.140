@@ -1,0 +1,9 @@
+--- drivers/net/ethernet/stmicro/stmmac/hwif.c
++++ drivers/net/ethernet/stmicro/stmmac/hwif.c
+@@ -340,3 +340,6 @@ int stmmac_hwif_init(struct stmmac_priv *priv)
+ 			id, needs_gmac, needs_gmac4);
+ 	return -EINVAL;
+ }
++
++EXPORT_SYMBOL_GPL(stmmac_hwif_init);
++
